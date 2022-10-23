@@ -1,0 +1,44 @@
+version: "3.7"
+
+services:
+  interpol_dwh:
+    image: postgres:bullseye
+    container_name: interpol_dwh
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    networks:
+      - interpol_network
+
+  interpol_dwh_ui:
+    image: dpage/pgadmin4:latest
+    container_name: interpol_dwh_ui
+    ports:
+      - "80:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    networks:
+      - interpol_network
+
+  interpol_python:
+    build:
+      context: .
+      dockerfile: ./Dockerfile_python
+    image: interpol_python
+    container_name: interpol_python
+    # restart: always
+    volumes:
+      - .:/project
+    working_dir: /project
+    command: python3 convert_excel_workbook_to_csv_files.py
+    networks:
+      - interpol_network
+
+networks:
+  interpol_network:
+    driver: bridge
+    name: interpol_network
