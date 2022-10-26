@@ -17,6 +17,8 @@ vars:
   DBT_CURRENT_DATE: '{{ run_started_at.astimezone(modules.pytz.timezone(var("DBT_TIMEZONE"))).strftime(var("DBT_DATE_FORMART")) }}'
   DBT_CURRENT_DATETIME: '{{ run_started_at.astimezone(modules.pytz.timezone(var("DBT_TIMEZONE"))).strftime(var("DBT_DATETIME_FORMAT")) }}'
   
+  "dbt_date:time_zone": '{{ var("DBT_TIMEZONE") }}'
+  
   CALENDAR_START_DATE: '1900-01-01'
   CALENDAR_END_DATE: '{{ var("DBT_CURRENT_DATE") }}'
 
