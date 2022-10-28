@@ -38,9 +38,9 @@ docker-compose up --detach
 ```
 Once the Python container is up and running it will execute the python code and generate the `seed` files about 5 secs after.
 
-Execute the `setup_dbt.sh` file to configure a dbt `alias` of the `docker run` command:
+Execute the `setup.sh` file to configure a dbt `alias` of the `docker run` command:
 ```ps
-./setup_dbt.sh
+./setup.sh
 ```
 
 ## How-to run dbt
