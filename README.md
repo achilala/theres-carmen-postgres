@@ -14,7 +14,7 @@ cd theres-carmen-postgres
 ```
 
 ## How-to Setup the Environment
-In the root folder, if none already exists, create an environment file with the following variables and values:
+In the root folder, if none already exists, create an environment file `.env` with the following variables and values:
 ```sh
 DBT_ENVIRONMENT=PROD
 DBT_SERVER=interpol_dwh
